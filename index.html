@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            <h1>ROCK PAPER SCISSORS</h1>
+            <h2>Choose Rock,Paper or Scissors</h2>
+
+
+          <div class="btnContainer">
+            <button id = "rockBtn" class="Btn">ROCK</button> 
+            <button id="paperBtn" class="Btn">PAPER</button>
+            <button id="scissorsBtn" class="Btn">SCISSORS</button>
+
+          </div>
+            <div id="resultDisplay" class = "resultDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+
+            const rockBtn = document.getElementById('rockBtn');
+            const paperBtn = document.getElementById('paperBtn');
+            const scissorsBtn = document.getElementById('scissorsBtn');
+            const result = document.getElementById('result');
+
+
+            
+
+
+            const choices = ["rock", "paper", "scissors"];
+
+            function playGame(playerChoice){
+                
+                const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+                let result = ""
+
+                result = `You chose ${playerChoice}, computer chose ${computerChoice}. `;
+                
+                if(playerChoice == computerChoice){
+
+                    result += 'Its a tie';
+
+                }
+                else if(
+                    (playerChoice === "rock" && computerChoice === "scissors")||
+                    (playerChoice ==="scissors" && computerChoice === "paper")|| 
+                    (playerChoice === "paper" && computerChoice == "rock")
+                ){
+                    result += 'YOU WIN!!';
+                }
+                else{
+                    result += 'Computer wins...';
+                }
+
+                resultDisplay.textContent = result;
+            }
+
+            rockBtn.addEventListener('click',function(){
+                playGame("rock");
+            });
+
+            paperBtn.addEventListener('click',function(){
+                playGame("paper");
+            });
+
+            scissorsBtn.addEventListener('click',function(){
+                playGame("scissors");
+            });
+            
+        });
+    </script>
+</body>
+</html>
